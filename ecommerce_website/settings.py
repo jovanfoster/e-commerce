@@ -146,6 +146,7 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SESSION_SAVE_EVERY_REQUEST = True
+
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51Hy2IAFRAIcOcOMorpralB1nztiBtXzln8z7ijzJtudxP8PEJ09UJiNmsbUjMfspWqxNEbgBljDutxDWBgn9fTDZ00BCZV0zvW'
 STRIPE_SECRET_KEY = 'sk_test_51Hy2IAFRAIcOcOMoBcLrS7N3ksM562nB0m2JxF7cDM0LIyNxPW5eRUZAmhQGgKp3Ja21M5TvgAqHYDvEjPwUlzdn00gWDT4VaU'
 
@@ -153,3 +154,6 @@ STRIPE_SECRET_KEY = 'sk_test_51Hy2IAFRAIcOcOMoBcLrS7N3ksM562nB0m2JxF7cDM0LIyNxPW
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
