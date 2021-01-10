@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if products %}  
+
+    <div class="page-title">
+        <h1>Featured Products</h1>
+    </div> 
+    {% include 'products/product_list_view.html' %}
+    {% else %}
+        <h2>Sorry! No featured products to show right now, please try again later!</h2>
+    {% endif %}
+{% endblock %}
+       

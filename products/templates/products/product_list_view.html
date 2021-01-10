@@ -1,0 +1,24 @@
+<div class="catalogue">          
+    {% for product in products%}    
+        <div class="product">
+            {% if product.featured %}
+                <h3 class="product-tag">Featured</h3>
+            {% endif %}
+            <a  href="{% url 'product-detail' product.pk %}">
+                <div class="thumbnail">
+                    <img class="product-img primary-img" src="{{ product.images.first.image.url }}" width="300" height="200">
+                    {% if product.has_second_image %}       
+                        <img class="product-img secondary-img" src="{{ product.second_image.url }}" width="300" height="200">
+                    {% else %}
+                        <img class="product-img secondary-img" src="{{ product.images.first.image.url }}" width="300" height="200">
+                    {% endif %}
+                </div>
+            </a>
+            <a  class="item" href="{% url 'product-detail' product.pk %}"><h4 class="alt-text">{{product.name}}</h4></a> 
+            <div class="bottom-content">
+                <h5 id="price" class="alt-text">${{product.price}}</h5>
+                <a id="quick-add-btn" class="btn btn-outline-secondary btn-sm" href="{% url 'add-to-cart' product.pk %}">+ Quick Add</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

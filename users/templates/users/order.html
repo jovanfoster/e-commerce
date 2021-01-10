@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!--    configure stripe checkout   -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <div class="content">
+        {% if order_items %}
+            <table id="cart" class="table">
+                <th></th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                {% for item in order_items %}
+                    <tr class="cart-item">
+                        <td><img src="{{ item.product.imageURL }}" alt="{{ item.product.imageURL }}" width="200" height="133.33"></td>
+                        <td><a class="item" href="{% url 'product-detail' item.product.pk %}"><h6>{{ item.product.name }}</h6></a></td>
+                        <td><h6>${{ item.product.price }}</h6></td>
+                        <td>
+                            <div class="quantity">
+                                <a class="update-qty" href="{% url 'add-to-cart' item.product.pk %}">+</a>
+                                <h6 id="item-qty">{{ item.quantity }}</h6>
+                                <a class="update-qty" href="{% url 'remove' item.product.pk %}">-</a>
+                            </div>
+                        </td>
+                        <td><a class="btn btn-danger" href="{% url 'remove-item' item.product.pk %}">Remove</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="cart-checkout">
+                <h6 id="total">Total: ${{ total }}</h6>
+                <button id="checkout" class="btn btn-warning">Checkout</button>
+            </div>
+        {% else %}
+            <h3>Nothing in your cart right now!</h3>
+        {% endif %}
+
+        <a href="{% url 'home' %}">Continue shopping</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<div id="mySidebar" class="sidebar">
+    <button class="hide-sidebar" onclick="closeSidebar()">x</button>
+    <a class="nav-link" href="{% url 'home' %}">HOME</a>
+    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+    <a class="nav-link" href="{% url 'register' %}">REGISTER</a>
+    <div id="toggle-dropdown" class="dropdown">
+        <p class="nav-link dropdown-toggle">CATEGORIES</p>
+        <div id="dropdown-menu">
+            {% for category in categories %}
+                <a class="nav-link dropdown-option" href="{% url 'list-by-category' category.pk %}">{% filter upper %}{{ category }}{% endfilter %}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+       
+<script>
+    const sidebar = document.getElementById("mySidebar");
+    sidebar.style.width = "0px";
+
+    const toggleDropdown = document.getElementById("toggle-dropdown");
+    const dropdown = document.getElementById("dropdown-menu");
+    dropdown.style.height = "0px";
+
+    openSidebar = () => {
+        if(window.innerWidth > 700) {
+            sidebar.style.width = "25%";
+        }  
+        else {
+            sidebar.style.width = "100%";
+        }
+    }
+    closeSidebar = () => sidebar.style.width = "0px";
+    showOrHideDropdown = () => {
+        if(dropdown.style.height == "0px"){
+            dropdown.style.height = "150px";
+        }
+        else{
+            dropdown.style.height = "0px";
+        }
+    }
+    
+    toggleDropdown.addEventListener("click", showOrHideDropdown);
+</script>
