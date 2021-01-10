@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,8 +130,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-LOGIN_URL = '/users/login/'
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'  #. os.path.join(BASE_DIR, 'staticfiles')
+
+# The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+LOGIN_URL = '/users/login/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -140,3 +150,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SESSION_SAVE_EVERY_REQUEST = True
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51Hy2IAFRAIcOcOMorpralB1nztiBtXzln8z7ijzJtudxP8PEJ09UJiNmsbUjMfspWqxNEbgBljDutxDWBgn9fTDZ00BCZV0zvW'
 STRIPE_SECRET_KEY = 'sk_test_51Hy2IAFRAIcOcOMoBcLrS7N3ksM562nB0m2JxF7cDM0LIyNxPW5eRUZAmhQGgKp3Ja21M5TvgAqHYDvEjPwUlzdn00gWDT4VaU'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
