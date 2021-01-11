@@ -18,7 +18,7 @@ def home(request):
     context = {
         'products': featured_products,
         'categories': categories,
-        #'items': get_items(request)
+        'items': get_items(request)
     }
     
     return render(request, 'products/index.html', context)
