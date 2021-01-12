@@ -1,4 +1,5 @@
 from django.db import models
+from ecommerce_website import settings
 
 
 class Product(models.Model):
@@ -35,7 +36,7 @@ class Product(models.Model):
 class ProductImage(models.Model):
     name = models.CharField(max_length=120)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images') 
-    image = models.ImageField(upload_to='static/imgs/')
+    image = models.ImageField(upload_to=settings.STATIC_URL.join('imgs/'))
 
 
 class Review(models.Model):
