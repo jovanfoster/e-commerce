@@ -491,4 +491,8 @@ h1 {
     .greeting {
         display: none;
     }
+
+    .form-field {
+        width: 100%;
+    }
 }

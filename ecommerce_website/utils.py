@@ -11,12 +11,16 @@ def get_total(request):
                 total += float((item['product']['price']).strip(' "')) * item['quantity']
     return total
 
+from users.models import Order
+
 def get_items(request):
     user = request.user
     quantity = 0
     if user.is_authenticated:
+        if not user.order:
+            user.order = Order.objects.create(user=user)
         for item in user.order.item.all():
-            quantity += item.quantity
+                quantity += item.quantity
         return quantity
     else:
         if 'cart' in request.session:
