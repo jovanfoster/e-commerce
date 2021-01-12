@@ -26,9 +26,9 @@ SECRET_KEY = '_vxyqzwz21nfu&x8@l%)7oeri=cvqwm4rgd*^zx4l@urr8*q)g'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://lit-peak-45044.herokuapp.com/', '.herokuapp.com/']
+ALLOWED_HOSTS = ['*', 'https://lit-peak-45044.herokuapp.com/', '.herokuapp.com/']
 
 
 # Application definition
