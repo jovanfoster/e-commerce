@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'storages',
     'products',
     'users',
     'payments',
@@ -145,7 +146,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/users/login/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -163,3 +164,10 @@ DATABASES['default'].update(db_from_env)
 SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE =  True
 SESSION_COOKIE_SECURE = True
+
+AWS_ACCESS_KEY_ID = 'AKIAX7USD52ON6Q5Q3OH'
+AWS_SECRET_ACCESS_KEY = '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'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'ecommerce-website-jpegs'
+AWS_S3_REGION_NAME = 'us-east-2'
