@@ -170,5 +170,6 @@ AWS_ACCESS_KEY_ID = 'AKIAX7USD52ON6Q5Q3OH'
 AWS_SECRET_ACCESS_KEY = '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'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage
 AWS_STORAGE_BUCKET_NAME = 'ecommerce-website-jpegs'
 AWS_S3_REGION_NAME = 'us-east-2'
