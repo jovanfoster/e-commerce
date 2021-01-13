@@ -26,8 +26,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '_vxyqzwz21nfu&x8@l%)7oeri=cvqw
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = True
+# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['lit-peak-45044.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -160,6 +160,6 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-SECURE_SSL_REDIRECT = True
+""" SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE =  True
-SESSION_COOKIE_SECURE = True 
+SESSION_COOKIE_SECURE = True  """
