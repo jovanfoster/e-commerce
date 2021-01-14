@@ -52,7 +52,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,21 +133,14 @@ USE_TZ = True
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# The URL to use when referring to static files (where they will be served from)
-STATIC_URL = '/static/'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-)
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+) 
 
 LOGIN_URL = '/users/login/'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -166,10 +158,18 @@ SECURE_SSL_REDIRECT = True
 CSRF_COOKIE_SECURE =  True
 SESSION_COOKIE_SECURE = True
 
+# S3 storage settings
+# required to get connection to S3 bucket
+
+AWS_STORAGE_BUCKET_NAME = 'ecommerce-website-jpegs'
+AWS_S3_REGION_NAME = 'us-east-2'
 AWS_ACCESS_KEY_ID = 'AKIAX7USD52ON6Q5Q3OH'
 AWS_SECRET_ACCESS_KEY = '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'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'ecommerce-website-jpegs'
-AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'

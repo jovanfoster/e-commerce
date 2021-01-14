@@ -10,5 +10,5 @@ urlpatterns = [
     path('products/categories/<pk>/', views.CategoryDetailView.as_view(), name='list-by-category'),
 ] 
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+""" if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) """
