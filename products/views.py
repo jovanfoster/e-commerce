@@ -6,17 +6,19 @@ from .models import *
 
 from users.models import MyUser
 from ecommerce_website.utils import get_items
-from ecommerce_website import settings
+from ecommerce_website.settings import _base as settings
 
 from django.views.generic import DetailView, ListView 
 
 
 # Create your views here.
 def home(request):
-    featured_products = Product.objects.filter(featured=True)
-    categories = Category.objects.all()
-    context = {
-        'products': featured_products,
+    featured    =   Product.objects.filter(featured=True)
+    products    =   Product.objects.all()
+    categories  =   Category.objects.all()
+    context     =   {
+        'featured': featured,
+        'products': products,
         'categories': categories,
         'items': get_items(request)
     }

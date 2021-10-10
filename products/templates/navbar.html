@@ -1,35 +1,46 @@
-<div id="mySidebar" class="sidebar">
-    <button class="hide-sidebar" onclick="closeSidebar()">x</button>
-    <a class="nav-link" href="{% url 'home' %}">HOME</a>
-    <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
-    <a class="nav-link" href="{% url 'register' %}">REGISTER</a>
-    <div id="toggle-dropdown" class="dropdown">
-        <p class="nav-link dropdown-toggle">CATEGORIES</p>
-        <div id="dropdown-menu">
-            {% for category in categories %}
-                <a class="nav-link dropdown-option" href="{% url 'list-by-category' category.pk %}">{% filter upper %}{{ category }}{% endfilter %}</a>
-            {% endfor %}
+<div id="my-menu" class="menu-container">
+    <div class="menu-background"></div>
+    <div id="my-sidebar" class="sidebar">
+        <button class="hide-sidebar" onclick="closeSidebar()">x</button>
+        <a class="nav-link" href="{% url 'home' %}">HOME</a>
+        <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+        <a class="nav-link" href="{% url 'register' %}">REGISTER</a>
+        <div id="toggle-dropdown" class="dropdown">
+            <p class="nav-link dropdown-toggle">CATEGORIES</p>
+            <div id="dropdown-menu">
+                {% for category in categories %}
+                    <a class="nav-link dropdown-option" href="{% url 'list-by-category' category.pk %}">{% filter upper %}{{ category }}{% endfilter %}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
        
 <script>
-    const sidebar = document.getElementById("mySidebar");
+    const sidebar = document.getElementById("my-sidebar");
     sidebar.style.width = "0px";
+    const menu = document.getElementById("my-menu");
+    menu.style.visibility = "hidden";
 
     const toggleDropdown = document.getElementById("toggle-dropdown");
     const dropdown = document.getElementById("dropdown-menu");
     dropdown.style.height = "0px";
 
     openSidebar = () => {
+        menu.style.visibility = "visible";
         if(window.innerWidth > 700) {
-            sidebar.style.width = "25%";
+            sidebar.style.width = "33%";
         }  
         else {
             sidebar.style.width = "100%";
         }
     }
-    closeSidebar = () => sidebar.style.width = "0px";
+    closeSidebar = () => {
+        sidebar.style.width = "0px";
+        setTimeout( () =>
+            menu.style.visibility = "hidden", 310
+        )
+    }
     showOrHideDropdown = () => {
         if(dropdown.style.height == "0px"){
             dropdown.style.height = "150px";

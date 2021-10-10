@@ -1,5 +1,4 @@
-# Text backup files
+.DS_Store
 *.bak
-
-# Database
 *.sqlite3
+development.py

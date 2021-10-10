@@ -1,0 +1,44 @@
+@media (min-width: 901px) {
+    .catalogue {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+
+}
+
+@media (max-width: 768px) {
+    #logo {
+        margin-left: 0;
+    }
+
+    .order-summary {
+        display: block !important;
+    }
+
+    .banner .btn {
+        display: none;
+    }
+
+    .greeting {
+        display: none;
+    }
+
+    .update-qty {
+        font-size: 24px;
+    }
+
+    .quantity {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .item-qty {
+        margin: 0;
+        font-size: 16px;
+        padding: 2em;
+    }
+}
