@@ -17,12 +17,7 @@ def get_items(request):
     user = request.user
     quantity = 0
     if user.is_authenticated:
-<<<<<<< HEAD
-        if not user.order:
-            user.order = Order.objects.create(user=user)
-=======
         order = Order.objects.get_or_create(user=user)
->>>>>>> tmp
         for item in user.order.item.all():
                 quantity += item.quantity
         return quantity
