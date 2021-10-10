@@ -37,7 +37,7 @@ def create_checkout_session(request):
                 items_to_purchase.append(item)
 
     if request.method == 'GET':
-        domain_url = 'http://localhost:3000/'
+        domain_url = 'https://lit-peak-45044.herokuapp.com'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             checkout_session = stripe.checkout.Session.create(

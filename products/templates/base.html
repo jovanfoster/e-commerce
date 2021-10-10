@@ -7,27 +7,35 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<<<<<<< HEAD
         <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+=======
+        <script src="https://kit.fontawesome.com/3749c7fb61.js" crossorigin="anonymous"></script>
+        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+        <link href="{% static 'css/media_queries.css' %}" rel="stylesheet">
+>>>>>>> tmp
         <title>My Store</title>
     </head>
     <main> 
         <body>
-            <div class="display-content">
+            <div>
+                {% include 'navbar.html' %}
                 <div class="banner">
+                    <span id="sidebar-btn" class="show-sidebar fas fa-bars mx-2" onclick="openSidebar()"></span>
                     <a id="logo" href="{% url 'home' %}">MY STORE</a>
                     {% if user.is_authenticated %}
-                        <h6 class="greeting">Hello, <strong>{{ user.email }}</strong>!</h6>
-                        <a class="btn btn-warning btn-sm" href="{% url 'logout' %}">Logout</a>
+                        <h6 class="greeting mx-2">Hello, <strong>{{ user.email }}</strong>!</h6>
+                        <a class="btn btn-warning btn-md mx-2" href="{% url 'logout' %}">Logout</a>
                     {% else %}
-                        <a class="btn btn-primary btn-sm" href="{% url 'login' %}">Login</a>
-                        <a class="btn btn-warning btn-sm" href="{% url 'register' %}">Register</a>
+                        <a class="btn btn-outline-light btn-md mx-2" href="{% url 'login' %}">Login</a>
+                        <a class="btn btn-warning btn-md mx-2" href="{% url 'register' %}">Register</a>
                     {% endif %}
-                        <a id="shopping-cart-icon" href="{% url 'order' %}"><img src="{% static 'imgs/shopping-cart-icon.png' %}" width="24"></a>
-                    <h6 id="cart-qty">{{ items }}</h6>
+                    <div class="cart mx-2">
+                        <a id="shopping-cart-icon" href="{% url 'order' %}"><span style="color: #fff; font-size: 24px;" class="fas fa-shopping-cart"></span></a>
+                        <h6 id="cart-qty">{{ items }}</h6>
+                    </div>
                 </div>
-                {% include 'navbar.html' %}
-                <div class="bar">
-                    <button id="sidebar-btn" class="show-sidebar" onclick="openSidebar()">☰</button>  
+                <div class="bar"> 
                     {% if messages %}
                         <ul class="messages">
                             {% for message in messages %}
@@ -35,24 +43,27 @@
                             {% endfor %}
                         </ul>
                     {% endif %}
-                </div>
-                {% block content %}
+                </div> 
+                <div class="flex-wrapper">
+                    <div class="container">
+                        {% block content %}
 
-                {% endblock %}
-
-                <div class="foot">
-                    <footer>
-                        <h3>Your conact information here!</h3>     
-                        <div class="contact-info">
-                            <ul>
-                                <li class="contact email">Email: someone@mail.com</li>
-                                <li class="contact phone-number">Phone: 1 000-000-0000</li>
-                                <li class="contact address">Address: 999 Main street</li>
-                                <li class="contact city">City: Toronto, ON, CAN</li>
-                                <li class="contact postal code">Postal Code: A1A 2B2</li>
-                            </ul>
-                        </div>                        
-                    </footer>
+                        {% endblock %}
+                    </div>
+                    <div class="foot">
+                        <footer>
+                            <h3>Your conact information here!</h3>     
+                            <div class="contact-info">
+                                <ul>
+                                    <li class="contact email">Email: someone@mail.com</li>
+                                    <li class="contact phone-number">Phone: 1 000-000-0000</li>
+                                    <li class="contact address">Address: 999 Main street</li>
+                                    <li class="contact city">City: Toronto, ON, CAN</li>
+                                    <li class="contact postal-code">Postal Code: A1A 2B2</li>
+                                </ul>
+                            </div>                        
+                        </footer>
+                    </div>
                 </div>
             </div>
 

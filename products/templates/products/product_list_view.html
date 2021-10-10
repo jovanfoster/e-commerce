@@ -1,23 +1,27 @@
-<div class="catalogue">          
+<div class="grid catalogue">          
     {% for product in products%}    
         <div class="product">
-            {% if product.featured %}
-                <h3 class="product-tag">Featured</h3>
-            {% endif %}
             <a  href="{% url 'product-detail' product.pk %}">
                 <div class="thumbnail">
-                    <img class="product-img primary-img" src="{{ product.images.first.image.url }}" width="300" height="200">
-                    {% if product.has_second_image %}       
-                        <img class="product-img secondary-img" src="{{ product.second_image.url }}" width="300" height="200">
-                    {% else %}
-                        <img class="product-img secondary-img" src="{{ product.images.first.image.url }}" width="300" height="200">
+                    {% if product.featured %}
+                        <h3 class="product-tag">Featured</h3>
                     {% endif %}
+                    
+                    <img class="product-img primary-img" src="{{ product.images.first.image.url }}">
                 </div>
             </a>
-            <a  class="item" href="{% url 'product-detail' product.pk %}"><h4 class="alt-text">{{product.name}}</h4></a> 
             <div class="bottom-content">
-                <h5 id="price" class="alt-text">${{product.price}}</h5>
-                <a id="quick-add-btn" class="btn btn-outline-secondary btn-sm" href="{% url 'add-to-cart' product.pk %}">+ Quick Add</a>
+                <div class="flex justify-space-between align-center mb-3">
+                    <h4 class="alt-text">{{ product.name }}</h4> 
+                    <h5 id="price" class="alt-text">${{ product.price }}</h5>
+                </div>
+                <a href="{% url 'add-to-cart' product.pk %}">
+                    <div class="d-block">
+                        <button class="btn btn-primary w-100" type="button">
+                            <i class="fas fa-cart-plus quick-add"></i>
+                        </button>
+                    </div>
+                </a>
             </div>
         </div>
     {% endfor %}
